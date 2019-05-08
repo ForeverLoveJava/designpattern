@@ -1,0 +1,20 @@
+package java.test.designpattern.singleton.lazy;
+
+/**
+ * 用内部类的方式实现单例模式
+ * 合理的利用了jvm类加载机制，完美解决线程安全问题（先加载内部类再加载外部类）
+ * 因为没有使用synchronized关键字，性能最优
+ */
+public class LazyInnerSingleton {
+    private LazyInnerSingleton(){}//私有化构造方法
+
+    public static final LazyInnerSingleton getInstance(){//创建全局调用方法，用final关键字修饰不可修改
+
+            return SingleInnerClass.INSTANCE;//返回实例
+        }
+
+    private static class SingleInnerClass{//内部类中是饿汉式单例，但是调用方法getInstance是不可修改的，则此类只实例化一次
+        //声明一个不可修改的静态常量(全局常量)
+        private static final LazyInnerSingleton INSTANCE = new LazyInnerSingleton();//实例化
+    }
+}
