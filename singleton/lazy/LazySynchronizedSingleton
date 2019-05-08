@@ -1,0 +1,19 @@
+package java.test.designpattern.singleton.lazy;
+
+/**
+ * 添加synchronized关键字，实现线程安全的懒汉式单例模式
+ * 也可以添加同步方法
+ * 缺点：可能发生死锁，因为synchronized关键字存在缺陷
+ */
+public class LazySynchronizedSingleton {
+    private LazySynchronizedSingleton(){}//私有化构造方法
+
+    private static LazySynchronizedSingleton INSTANCE = null;//创建常量
+
+    public synchronized static  LazySynchronizedSingleton getInstance(){//创建全局访问方法
+        if(INSTANCE == null){
+            INSTANCE = new LazySynchronizedSingleton();
+        }
+        return INSTANCE;
+    }
+}
