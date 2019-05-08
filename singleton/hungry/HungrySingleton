@@ -1,0 +1,17 @@
+package java.test.designpattern.singleton.hungry;
+
+/**
+ * 饿汉式单例模式
+ * 首次加载这个类时，就会实力化一次
+ * 缺点：浪费内存空间
+ */
+public class HungrySingleton {
+    private HungrySingleton(){}//私有化构造函数，保证外界无法实例化此类
+
+    private static HungrySingleton INSTANCE;//创建实例常量
+
+    public static HungrySingleton getInstance(){//创建一个公共访问方法
+        INSTANCE = new HungrySingleton();//实例化
+        return INSTANCE;
+    }
+}
