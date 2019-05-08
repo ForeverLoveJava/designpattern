@@ -1,0 +1,18 @@
+package java.test.designpattern.singleton.lazy;
+
+/**
+ * 懒汉式 简单单例
+ * 缺点：存在线程安全问题
+ */
+public class LazySimpleSingleton {
+    private LazySimpleSingleton(){}//私有化构造函数
+
+    private static LazySimpleSingleton INSTANCE = null;//创建常量
+
+    public static LazySimpleSingleton getInstance(){//创建全局访问方法
+        if(null == INSTANCE){//当getInstance方法被调用时再创建实例，如果已经创建过了则直接引用
+            INSTANCE = new LazySimpleSingleton();
+        }
+        return INSTANCE;
+    }
+}
